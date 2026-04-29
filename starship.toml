@@ -1,0 +1,36 @@
+add_newline = false
+
+format = """
+$directory$git_branch$time
+  $character"""
+
+[character]
+success_symbol = '[ 󰣨 ](bg:255 fg:240)'
+error_symbol = '[  󰣨 ](bg:255 fg:red)'
+format = '[🭕](bold fg:255)[$symbol]($style)[ ](bold fg:255)'
+
+[directory]
+home_symbol = ' '
+read_only = ' '
+style = 'bg:255 fg:240'
+truncation_length = 3
+truncation_symbol = '.../'
+format = '[🭒](bold fg:255)[󰉋  $path]($style)[🮖](bold fg:255)'
+
+[time]
+disabled = false
+time_format = '%R'
+format = '[  $time ](bold fg:255)[🮖🭝](bold fg:255)'
+
+[git_branch]
+symbol = ' '
+style = 'bold yellow'
+truncation_length = 8
+truncation_symbol = ''
+
+[git_commit]
+commit_hash_length = 4
+tag_symbol = ' '
+
+[package]
+disabled = true

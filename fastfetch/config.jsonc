@@ -1,0 +1,66 @@
+{
+  "logo": {
+    "source": "arch"
+  },
+  "display": {
+    "separator": "  "
+  },
+  "modules": [
+    "break",
+    "break",
+    "break",
+    {
+      "type": "title"
+    },
+    "break",
+    {
+      "type": "os",
+      "key": "\ue732"
+    },
+    {
+      "type": "kernel",
+      "key": "\uf17c"
+    },
+    {
+      "type": "uptime",
+      "key": "\ue641"
+    },
+    {
+      "type": "packages",
+      "key": "\uf487"
+    },
+    {
+      "type": "shell",
+      "key": "\uebca"
+    },
+    {
+      "type": "wm",
+      "key": "\uf359"
+    },
+    {
+      "type": "terminal",
+      "key": "\uf489"
+    },
+    {
+      "type": "cpu",
+      "key": "\uf4bc"
+    },
+    {
+      "type": "gpu",
+      "key": "\uefa7"
+    },
+    {
+      "type": "memory",
+      "key": "\uefc5"
+    },
+    {
+      "type": "disk",
+      "key": "\uf0a0"
+    },
+    "break",
+    {
+      "type": "colors",
+      "symbol": "circle"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+@import "colors.rasi"
+
+configuration {
+  location:          6;
+  font:              "M+2 Nerd Font Medium 11";
+}
+
+window {
+  background-color:  @background;
+  border-radius:     16px 16px 0 0;
+  border-color:      @border-color;
+  border:            1;
+  width:             500px;
+  padding:           2px;
+}
+
+mainbox {
+	border-radius:     16px;
+	padding:           15px;
+}
+
+inputbar {
+  padding:           0px 0px 10px 0px;
+  text-color:        @primary;
+  children:          [entry];
+}
+
+entry {
+  text-color:        @primary;
+  placeholder:       "Search";
+  placeholder-color: @placeholder;
+}
+
+listview {
+  fixed-height:      false;
+  lines:             8;
+  border:            0px;
+  scrollbar:         false;
+  spacing:           5px;
+}
+
+element {
+  border-radius:     15px;
+  padding:           5px;
+  cursor:            pointer;
+}
+
+element normal.normal, element alternate.normal {
+  background-color:  transparent;
+  text-color:        @text-element;
+}
+
+element selected.normal {
+  background-color:  @selected;
+  text-color:        @text-selected;
+}
+
+textbox {
+  text-color:        @error-message;
+  padding:           10px;
+}
