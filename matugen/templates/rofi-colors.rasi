@@ -1,10 +1,10 @@
 * {
     background:          #0a0a0af2;
     border-color:        #242424;
+    placeholder:         #2e2e2e;
     selected:            {{ colors.primary.default.hex }};
     primary:             {{colors.on_surface.default.hex}};
     text-selected:       {{colors.background.default.hex}};
     text-element:        {{ colors.on_surface.default.hex }};
     error-message:       {{ colors.error.default.hex }};
-    placeholder:         {{ colors.on_background.default.hex }};
 }

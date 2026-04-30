@@ -1,6 +1,7 @@
 @import "colors.rasi"
 
 configuration {
+  show-icons:        true;
   location:          6;
   font:              "M+2 Nerd Font Medium 11";
 }
