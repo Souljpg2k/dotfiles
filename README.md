@@ -5,5 +5,5 @@ sudo pacman -S rofi fastfetch mako code cava neovim kitty starship fish mpv hypr
 ```
 
 ```bash
-yay -S matugen-bin bibata-cursor-theme-bin waypaper-git brave-bin hyprshutdown krabby-bin
+yay -S matugen-bin bibata-cursor-theme-bin waypaper-git brave-bin hyprshutdown krabby-bin wlogout
 ```
