@@ -28,7 +28,7 @@ inputbar {
 
 entry {
   text-color:        @primary;
-  placeholder:       "Search";
+  placeholder:       "  Search";
   placeholder-color: @placeholder;
 }
 
