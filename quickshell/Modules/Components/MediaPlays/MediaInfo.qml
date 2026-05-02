@@ -1,18 +1,43 @@
 import QtQuick
 import Quickshell.Io
+import Quickshell.Services.Mpris
 
 Item {
     id: mediaInfo
 
-    property string artist: ""
-    property string title: ""
+    property var player: {
+        for (var i = 0; i < Mpris.players.values.length; i++) {
+            var p = Mpris.players.values[i];
+            if (p.dbusName !== "org.mpris.MediaPlayer2.playerctld")
+                return p;
+
+        }
+        return null;
+    }
 
     width: 120
     height: root.height - 15
+    Component.onCompleted: {
+        if (player) {
+            console.log("artist:", player.trackArtist);
+            console.log("title:", player.trackTitle);
+        }
+    }
 
     Text {
-        width: 125
-        text: mediaInfo.artist ? mediaInfo.artist + " - " + mediaInfo.title : mediaInfo.title || "No media"
+        width: parent.width
+        anchors.verticalCenter: parent.verticalCenter
+        text: {
+            if (!mediaInfo.player)
+                return "No media";
+
+            var artist = mediaInfo.player.trackArtist;
+            var title = mediaInfo.player.trackTitle;
+            if (artist && title)
+                return artist + " - " + title;
+
+            return title || artist || "No media";
+        }
         color: root.fg
         font.pixelSize: root.fontSize
         elide: Text.ElideRight
@@ -28,63 +53,18 @@ Item {
             }
         }
 
-        Process {
-            id: volumeUpProcess
-
-            command: ["wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%+"]
-        }
-
-        Process {
-            id: volumeDownProcess
-
-            command: ["wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%-"]
-        }
-
     }
 
-  Process {
-    id: mediaProcess
-    command: ["playerctl", "metadata", "--format", "{{artist}} - {{title}}"]
+    Process {
+        id: volumeUpProcess
 
-    stdout: SplitParser {
-        onRead: function(data) {
-            var trimmed = data.trim()
-            if (!trimmed) return
-            var idx = trimmed.indexOf(" - ")
-            if (idx !== -1) {
-                mediaInfo.artist = trimmed.substring(0, idx)
-                mediaInfo.title = trimmed.substring(idx + 3)
-            } else {
-                mediaInfo.title = trimmed
-            }
-        }
+        command: ["wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%+"]
     }
 
-    stderr: SplitParser {
-        onRead: function(data) {
-            mediaInfo.artist = ""
-            mediaInfo.title = ""
-        }
-    }
+    Process {
+        id: volumeDownProcess
 
-    onExited: function(code, status) {
-        if (code !== 0) {
-            mediaInfo.artist = ""
-            mediaInfo.title = ""
-        }
-    }
-}
-
-    Timer {
-        interval: 2000
-        running: true
-        repeat: true
-        triggeredOnStart: true
-        onTriggered: {
-            if (!mediaProcess.running)
-                mediaProcess.running = true;
-
-        }
+        command: ["wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%-"]
     }
 
 }

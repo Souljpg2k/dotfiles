@@ -22,7 +22,7 @@ Rectangle {
     color: root.onbg
     radius: 20
     implicitWidth: row.implicitWidth + 16
-    implicitHeight: root.height - 10
+    implicitHeight: root.height - 9
 
     Rectangle {
         id: activePill

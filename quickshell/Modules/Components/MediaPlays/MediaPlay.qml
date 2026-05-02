@@ -1,14 +1,37 @@
 import QtQuick
 import Quickshell.Io
+import Quickshell.Services.Mpris
 
 Item {
     id: playPauseBtn
 
-    property bool isPlaying: false
+    property var player: Mpris.players.values[0] ?? null
+    property bool isPlaying: player ? player.isPlaying : false
     property real progress: 0
 
     width: root.systemSize
     height: root.systemSize
+
+    Connections {
+        function onTrackChanged() {
+            playPauseBtn.progress = 0;
+        }
+
+        target: playPauseBtn.player
+    }
+
+    Timer {
+        interval: 1000
+        running: playPauseBtn.isPlaying
+        repeat: true
+        triggeredOnStart: true
+        onTriggered: {
+            if (playPauseBtn.player && playPauseBtn.player.length > 0) {
+                playPauseBtn.player.positionChanged();
+                playPauseBtn.progress = Math.min(playPauseBtn.player.position / playPauseBtn.player.length, 1);
+            }
+        }
+    }
 
     Text {
         anchors.centerIn: parent
@@ -21,10 +44,9 @@ Item {
         anchors.fill: parent
         cursorShape: Qt.PointingHandCursor
         onClicked: {
-            if (!playPauseProcess.running)
-                playPauseProcess.running = true;
+            if (playPauseBtn.player)
+                playPauseBtn.player.togglePlaying();
 
-            refreshTimer.restart();
         }
         onWheel: function(wheel) {
             if (wheel.angleDelta.y > 0)
@@ -32,13 +54,6 @@ Item {
             else
                 volumeDownProcess.running = true;
         }
-    }
-
-    Process {
-        id: playPauseProcess
-
-        command: ["playerctl", "play-pause"]
-        onExited: refreshTimer.restart()
     }
 
     Process {
@@ -51,67 +66,6 @@ Item {
         id: volumeDownProcess
 
         command: ["wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%-"]
-    }
-
-    Process {
-        id: statusProcess
-
-        command: ["playerctl", "metadata", "--format", "{{status}}|{{position}}|{{mpris:length}}"]
-        onExited: function(code, status) {
-            if (code !== 0) {
-                playPauseBtn.isPlaying = false;
-                playPauseBtn.progress = 0;
-            }
-        }
-
-        stdout: SplitParser {
-            onRead: function(data) {
-                var parts = data.trim().split("|");
-                if (parts.length < 3)
-                    return ;
-
-                var newPlaying = parts[0] === "Playing";
-                var pos = parseFloat(parts[1]) || 0;
-                var len = parseFloat(parts[2]) || 1;
-                var newProgress = len > 0 ? pos / len : 0;
-                if (newProgress < 0.01 && playPauseBtn.progress > 0.05)
-                    playPauseBtn.progress = 0;
-
-                playPauseBtn.isPlaying = newPlaying;
-                playPauseBtn.progress = newProgress;
-            }
-        }
-
-        stderr: SplitParser {
-            onRead: function(data) {
-                playPauseBtn.isPlaying = false;
-                playPauseBtn.progress = 0;
-            }
-        }
-
-    }
-
-    Timer {
-        id: refreshTimer
-
-        interval: 300
-        onTriggered: {
-            if (!statusProcess.running)
-                statusProcess.running = true;
-
-        }
-    }
-
-    Timer {
-        interval: 1000
-        running: true
-        repeat: true
-        triggeredOnStart: true
-        onTriggered: {
-            if (!statusProcess.running)
-                statusProcess.running = true;
-
-        }
     }
 
     Canvas {

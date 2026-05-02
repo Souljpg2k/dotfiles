@@ -14,7 +14,7 @@ Item {
         anchors.centerIn: parent
         text: ToplevelManager.activeToplevel ? ToplevelManager.activeToplevel.appId : "Workspace  " + wsId
         color: root.fg
-        font.pixelSize: fontSize
+        font.pixelSize: root.fontSize
         font.family: root.fontFamily
         width: windowTitles.width
         elide: Text.ElideRight
