@@ -1,10 +1,10 @@
 * {
-    background:          #222223f2;
-    border-color:        #242424;
-    placeholder:         #3d3d3e;
-    selected:            #a6c8ff;
-    primary:             #e1e2e9;
-    text-selected:       #111318;
-    text-element:        #e1e2e9;
-    error-message:       #ffb4ab;
+    background:          #181821;
+    border-color:        #121219;
+    placeholder:         #a6adc8;
+    selected:            #232332;
+    primary:             #cdd6f4;
+    text-selected:       #cdd6f4;
+    text-element:        #bac2de;
+    error-message:       #f38ba8;
 }
