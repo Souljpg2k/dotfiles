@@ -1,6 +1,5 @@
 import "../../Themes"
 import QtQuick
-import QtQuick.Layouts
 import Quickshell.Hyprland
 
 Rectangle {
@@ -43,10 +42,9 @@ Rectangle {
 
                 Text {
                     anchors.centerIn: parent
-                    text: workspaceBar.activeWs === index ? "󰮯" : (workspaceBar.isOccupied(index) ? "" : "")
+                    text: workspaceBar.activeWs === index ? "󰮯" : (workspaceBar.isOccupied(index) ? "" : index + 1)
                     font.pixelSize: workspaceBar.activeWs === index ? 14 : 10
                     color: workspaceBar.activeWs === index ? Theme.fg : Theme.wsColor
-                    visible: text !== ""
 
                     Behavior on color {
                         ColorAnimation {
