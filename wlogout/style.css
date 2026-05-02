@@ -3,6 +3,7 @@
 * {
 	background-image: none;
 	box-shadow: none;
+	color: transparent;
 }
 
 window {
@@ -13,21 +14,19 @@ button {
 	border-radius: 24px;
 	color: @text;
 	background-color: transparent;
-	border-width: 0;
 	background-repeat: no-repeat;
 	background-position: center;
-	background-size: 30%;
+	background-size: 40%;
 	background-color: @background;
 	margin: 100px 0px 90px 10px;
+	box-shadow: 0px 0px 10px #000000;
 }
 
 button:focus,
 button:active,
 button:hover {
-	color: transparent;
 	background-color: @primary;
-	background-size: 50%;
-	box-shadow: 0px 0px 10px #000000;
+	background-size: 55%;
 	outline-style: none;
 }
 
