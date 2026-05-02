@@ -9,26 +9,15 @@ Text {
     font.pixelSize: root.iconSize
 
     Process {
-        id: wallpaperOnProcess
+        id: wallpaperProcess
 
-        command: ["sh", "-c", "waypaper"]
-    }
-
-    Process {
-        id: wallpaperOffProcess
-
-        command: ["sh", "-c", "pkill waypaper"]
+        command: ["sh", "-c", "$HOME/.config/hypr/scripts/wallpapers.sh"]
     }
 
     MouseArea {
         anchors.fill: parent
         cursorShape: Qt.PointingHandCursor
-        onClicked: {
-            if (wallpaperOnProcess.running)
-                wallpaperOffProcess.running = true;
-            else
-                wallpaperOnProcess.running = true;
-        }
+        onClicked: wallpaperProcess.running = true
     }
 
 }
