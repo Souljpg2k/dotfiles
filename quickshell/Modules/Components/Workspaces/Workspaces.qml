@@ -61,12 +61,16 @@ Rectangle {
                     anchors.fill: parent
                     cursorShape: Qt.PointingHandCursor
                     onClicked: Hyprland.dispatch("workspace " + (index + 1))
-                    onWheel: (wheel) => {
+                    onWheel: function(wheel) {
                         var current = Hyprland.focusedWorkspace ? Hyprland.focusedWorkspace.id : 1;
+                        var next;
                         if (wheel.angleDelta.y > 0)
-                            Hyprland.dispatch("workspace " + Math.max(1, current - 1));
+                            next = Math.max(1, current - 1);
                         else
-                            Hyprland.dispatch("workspace " + Math.min(workspaceBar.wsCount, current + 1));
+                            next = Math.min(workspaceBar.wsCount, current + 1);
+                        if (next !== current)
+                            Hyprland.dispatch("workspace " + next);
+
                     }
                 }
 
