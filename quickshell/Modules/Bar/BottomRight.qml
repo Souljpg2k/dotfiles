@@ -1,3 +1,4 @@
+import "../Themes"
 import QtQuick
 import Quickshell
 
@@ -7,23 +8,21 @@ PanelWindow {
     implicitHeight: 30
 
     anchors {
-        top: true
+        bottom: true
         right: true
     }
 
     Canvas {
-        id: cornerRight
-
         anchors.fill: parent
         onPaint: {
             var ctx = getContext("2d");
             ctx.clearRect(0, 0, width, height);
             ctx.beginPath();
-            ctx.moveTo(width, 0);
-            ctx.lineTo(0, 0);
-            ctx.quadraticCurveTo(width, 0, width, height);
+            ctx.moveTo(width, height);
+            ctx.lineTo(0, height);
+            ctx.quadraticCurveTo(width, height, width, 0);
             ctx.closePath();
-            ctx.fillStyle = "#181821";
+            ctx.fillStyle = Theme.bg;
             ctx.fill();
         }
     }

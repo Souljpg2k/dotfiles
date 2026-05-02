@@ -11,4 +11,10 @@ ShellRoot {
     Right {
     }
 
+    BottomLeft {
+    }
+
+    BottomRight {
+    }
+
 }

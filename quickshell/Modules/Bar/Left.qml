@@ -3,11 +3,9 @@ import QtQuick
 import Quickshell
 
 PanelWindow {
-    id: left
-
     color: "transparent"
-    implicitWidth: cornerLeft.width
-    implicitHeight: cornerLeft.height
+    implicitWidth: 30
+    implicitHeight: 30
 
     anchors {
         top: true
@@ -15,10 +13,7 @@ PanelWindow {
     }
 
     Canvas {
-        id: cornerLeft
-
-        width: 30
-        height: 30
+        anchors.fill: parent
         onPaint: {
             var ctx = getContext("2d");
             ctx.clearRect(0, 0, width, height);
