@@ -12,6 +12,41 @@ Item {
     width: root.systemSize
     height: root.systemSize
 
+    Text {
+        anchors.centerIn: parent
+        text: playPauseBtn.isPlaying ? "󰏤" : "󰐊"
+        color: root.fg
+        font.pixelSize: root.iconSySize
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        cursorShape: Qt.PointingHandCursor
+        onClicked: {
+            if (playPauseBtn.player)
+                playPauseBtn.player.togglePlaying();
+
+        }
+        onWheel: function(wheel) {
+            if (wheel.angleDelta.y > 0)
+                volumeUpProcess.running = true;
+            else
+                volumeDownProcess.running = true;
+        }
+    }
+
+    Process {
+        id: volumeUpProcess
+
+        command: ["wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%+"]
+    }
+
+    Process {
+        id: volumeDownProcess
+
+        command: ["wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%-"]
+    }
+
     Connections {
         function onValuesChanged() {
             if (Mpris.players.values.length === 0) {
@@ -45,41 +80,6 @@ Item {
                 playPauseBtn.progress = Math.min(playPauseBtn.player.position / playPauseBtn.player.length, 1);
             }
         }
-    }
-
-    Text {
-        anchors.centerIn: parent
-        text: playPauseBtn.isPlaying ? "󰏤" : "󰐊"
-        color: root.fg
-        font.pixelSize: 11
-    }
-
-    MouseArea {
-        anchors.fill: parent
-        cursorShape: Qt.PointingHandCursor
-        onClicked: {
-            if (playPauseBtn.player)
-                playPauseBtn.player.togglePlaying();
-
-        }
-        onWheel: function(wheel) {
-            if (wheel.angleDelta.y > 0)
-                volumeUpProcess.running = true;
-            else
-                volumeDownProcess.running = true;
-        }
-    }
-
-    Process {
-        id: volumeUpProcess
-
-        command: ["wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%+"]
-    }
-
-    Process {
-        id: volumeDownProcess
-
-        command: ["wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%-"]
     }
 
     Canvas {

@@ -17,14 +17,11 @@ PanelWindow {
     property color pillColor: "#585b70"
     property color wsColor: "#cdd6f4"
     property string fontFamily: "Noto Sans"
+    property int iconSySize: 11
     property int fontSize: 12
     property int iconSize: 14
     property int systemSize: 26
     property int spacings: 6
-    property int cpuUsage: 0
-    property int memUsage: 0
-    property var lastCpuIdle: 0
-    property var lastCpuTotal: 0
 
     color: "transparent"
     implicitHeight: 35
@@ -41,20 +38,13 @@ PanelWindow {
         anchors.fill: parent
         height: root.height
         color: root.bg
-        radius: 20
-
-        anchors {
-            topMargin: 5
-            leftMargin: 5
-            rightMargin: 5
-        }
 
         RowLayout {
             id: leftLayout
 
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
-            anchors.leftMargin: 15
+            anchors.leftMargin: 20
             spacing: root.spacings
 
             AppLauncher {
@@ -70,6 +60,12 @@ PanelWindow {
 
             anchors.centerIn: parent
             spacing: root.spacings
+
+            Cpu {
+            }
+
+            Mem {
+            }
 
             Rectangle {
                 width: 165
@@ -95,7 +91,7 @@ PanelWindow {
             }
 
             Rectangle {
-                width: 235
+                width: 200
                 height: root.height - 9
                 color: root.onbg
                 radius: 20
@@ -114,31 +110,13 @@ PanelWindow {
                         width: 10
                     }
 
-                    Cpu {
-                        MouseArea {
-                            anchors.fill: parent
-                            cursorShape: Qt.PointingHandCursor
-                            onClicked: systemStats.isOpen = !systemStats.isOpen
-                        }
-
+                    Screenshot {
                     }
 
-                    Gpu {
-                        MouseArea {
-                            anchors.fill: parent
-                            cursorShape: Qt.PointingHandCursor
-                            onClicked: systemStats.isOpen = !systemStats.isOpen
-                        }
-
+                    Wallpaper {
                     }
 
-                    Mem {
-                        MouseArea {
-                            anchors.fill: parent
-                            cursorShape: Qt.PointingHandCursor
-                            onClicked: systemStats.isOpen = !systemStats.isOpen
-                        }
-
+                    SunSet {
                     }
 
                 }
@@ -156,17 +134,7 @@ PanelWindow {
 
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
-            spacing: root.spacings
-            anchors.rightMargin: 15
-
-            Screenshot {
-            }
-
-            Wallpaper {
-            }
-
-            SunSet {
-            }
+            anchors.rightMargin: 20
 
             Item {
                 Layout.fillWidth: true
@@ -174,67 +142,6 @@ PanelWindow {
             }
 
             PowerMenu {
-            }
-
-        }
-
-    }
-
-    PopupWindow {
-        id: systemStats
-
-        property bool isOpen: false
-        property int itemSize: 50
-        property int iconSize: 22
-
-        anchor.window: root
-        anchor.rect.x: root.width / 1.6 - implicitWidth / 20
-        anchor.rect.y: root.height - 0
-        implicitWidth: 250
-        implicitHeight: isOpen ? 80 : 0
-        color: "transparent"
-        visible: implicitHeight > 0
-
-        Rectangle {
-            anchors.fill: parent
-            bottomLeftRadius: 20
-            bottomRightRadius: 20
-            color: root.bg
-
-            RowLayout {
-                anchors.centerIn: parent
-                anchors.verticalCenterOffset: -10
-                spacing: 20
-
-                Cpu {
-                    width: systemStats.itemSize
-                    height: systemStats.itemSize
-                    showPercent: true
-                    iconSySize: systemStats.iconSize
-                }
-
-                Gpu {
-                    width: systemStats.itemSize
-                    height: systemStats.itemSize
-                    showPercent: true
-                    iconSySize: systemStats.iconSize
-                }
-
-                Mem {
-                    width: systemStats.itemSize
-                    height: systemStats.itemSize
-                    showPercent: true
-                    iconSySize: systemStats.iconSize
-                }
-
-            }
-
-        }
-
-        Behavior on implicitHeight {
-            NumberAnimation {
-                duration: 250
-                easing.type: Easing.OutCubic
             }
 
         }
