@@ -9,13 +9,13 @@ import Quickshell
 PanelWindow {
     id: root
 
-    property color bg: "#222223"
-    property color fg: "#f2f2f7"
-    property color onbg: "#2a2a2c"
-    property color systemColor: "#8d8d92"
-    property color lineColor: "#454546"
-    property color pillColor: "#4b4b4b"
-    property color wsColor: "#aaaaaa"
+    property color bg: "#181821"
+    property color fg: "#cdd6f4"
+    property color onbg: "#232332"
+    property color systemColor: "#cdd6f4"
+    property color lineColor: "#45475a"
+    property color pillColor: "#585b70"
+    property color wsColor: "#cdd6f4"
     property string fontFamily: "Noto Sans"
     property int fontSize: 12
     property int iconSize: 14

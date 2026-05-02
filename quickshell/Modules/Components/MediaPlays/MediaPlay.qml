@@ -14,7 +14,7 @@ Item {
         anchors.centerIn: parent
         text: playPauseBtn.isPlaying ? "󰏤" : "󰐊"
         color: root.fg
-        font.pixelSize: root.iconSize
+        font.pixelSize: 11
     }
 
     MouseArea {
