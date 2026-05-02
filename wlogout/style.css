@@ -11,13 +11,13 @@ window {
 
 button {
 	border-radius: 24px;
-	color: #FFFFFF;
+	color: @text;
 	background-color: transparent;
 	border-width: 0;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 30%;
-	background-color: #222223;
+	background-color: @background;
 	margin: 100px 0px 90px 10px;
 }
 
