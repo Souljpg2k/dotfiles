@@ -16,8 +16,8 @@ window {
 }
 
 mainbox {
-	border-radius:     16px;
-	padding:           15px;
+  border-radius:     16px;
+  padding:           15px;
   children:          [ "listview", "inputbar" ];
 }
 
