@@ -1,10 +1,10 @@
+import "../Themes"
 import QtQuick
 import Quickshell
-import Quickshell.Io
 
 Item {
     width: 100
-    height: root.height
+    height: 100
 
     SystemClock {
         id: clock
@@ -15,9 +15,9 @@ Item {
     Text {
         anchors.centerIn: parent
         text: Qt.formatDateTime(clock.date, "dddd MM/dd  HH:mm")
-        color: root.fg
-        font.pixelSize: root.fontSize
-        font.family: root.fontFamily
+        color: Theme.fg
+        font.pixelSize: Theme.fontSize
+        font.family: Theme.fontFamily
     }
 
 }

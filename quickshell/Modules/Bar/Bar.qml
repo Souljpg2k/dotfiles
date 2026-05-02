@@ -1,7 +1,8 @@
-import "./Components"
-import "./Components/HardwareStatus"
-import "./Components/MediaPlays"
-import "./Components/Workspaces"
+import "../Components"
+import "../Components/HardwareStatus"
+import "../Components/MediaPlays"
+import "../Components/Workspaces"
+import "../Themes"
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
@@ -9,19 +10,9 @@ import Quickshell
 PanelWindow {
     id: root
 
-    property color bg: "#181821"
-    property color fg: "#cdd6f4"
-    property color onbg: "#232332"
-    property color systemColor: "#cdd6f4"
-    property color lineColor: "#45475a"
-    property color pillColor: "#585b70"
-    property color wsColor: "#cdd6f4"
-    property string fontFamily: "Noto Sans"
-    property int iconSySize: 11
-    property int fontSize: 12
-    property int iconSize: 14
-    property int systemSize: 26
-    property int spacings: 6
+    property int spacings: 5
+    property int marginX: 20
+    property int radiusS: 20
 
     color: "transparent"
     implicitHeight: 35
@@ -36,15 +27,14 @@ PanelWindow {
         id: bar
 
         anchors.fill: parent
-        height: root.height
-        color: root.bg
+        color: Theme.bg
 
         RowLayout {
             id: leftLayout
 
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
-            anchors.leftMargin: 20
+            anchors.leftMargin: root.marginX
             spacing: root.spacings
 
             AppLauncher {
@@ -68,10 +58,10 @@ PanelWindow {
             }
 
             Rectangle {
-                width: 165
-                height: root.height - 9
-                color: root.onbg
-                radius: 20
+                width: 160
+                height: root.implicitHeight - 9
+                color: Theme.onbg
+                radius: root.radiusS
 
                 RowLayout {
                     anchors.centerIn: parent
@@ -92,9 +82,9 @@ PanelWindow {
 
             Rectangle {
                 width: 200
-                height: root.height - 9
-                color: root.onbg
-                radius: 20
+                height: root.implicitHeight - 9
+                color: Theme.onbg
+                radius: root.radiusS
 
                 RowLayout {
                     anchors.centerIn: parent
@@ -134,12 +124,7 @@ PanelWindow {
 
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
-            anchors.rightMargin: 20
-
-            Item {
-                Layout.fillWidth: true
-                width: 20
-            }
+            anchors.rightMargin: root.marginX
 
             PowerMenu {
             }

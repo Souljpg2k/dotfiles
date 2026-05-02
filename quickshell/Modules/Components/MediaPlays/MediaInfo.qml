@@ -1,3 +1,4 @@
+import "../../Themes"
 import QtQuick
 import Quickshell.Io
 import Quickshell.Services.Mpris
@@ -16,7 +17,7 @@ Item {
     }
 
     width: 120
-    height: root.height - 15
+    height: root.height
     Component.onCompleted: {
         if (player) {
             console.log("artist:", player.trackArtist);
@@ -38,8 +39,8 @@ Item {
 
             return title || artist || "No media";
         }
-        color: root.fg
-        font.pixelSize: root.fontSize
+        color: Theme.fg
+        font.pixelSize: Theme.fontSize
         elide: Text.ElideRight
 
         MouseArea {

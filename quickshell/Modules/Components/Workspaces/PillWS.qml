@@ -1,3 +1,4 @@
+import "../../Themes"
 import QtQuick
 
 Rectangle {
@@ -15,7 +16,7 @@ Rectangle {
     width: pillW
     height: 24
     radius: 50
-    color: root.pillColor
+    color: Theme.pillColor
 
     Connections {
         function onActiveWsChanged() {

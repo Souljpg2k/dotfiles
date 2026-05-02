@@ -1,3 +1,4 @@
+import "../../Themes"
 import QtQuick
 import Quickshell.Io
 import Quickshell.Services.Mpris
@@ -9,14 +10,14 @@ Item {
     property bool isPlaying: player ? player.isPlaying : false
     property real progress: 0
 
-    width: root.systemSize
-    height: root.systemSize
+    width: Theme.systemSize
+    height: Theme.systemSize
 
     Text {
         anchors.centerIn: parent
         text: playPauseBtn.isPlaying ? "󰏤" : "󰐊"
-        color: root.fg
-        font.pixelSize: root.iconSySize
+        color: Theme.fg
+        font.pixelSize: Theme.iconSizes
     }
 
     MouseArea {
@@ -93,7 +94,7 @@ Item {
             var r = width / 2 - 3;
             ctx.beginPath();
             ctx.arc(cx, cy, r, 0, 2 * Math.PI);
-            ctx.strokeStyle = root.lineColor;
+            ctx.strokeStyle = Theme.lineColor;
             ctx.lineWidth = 2;
             ctx.stroke();
             if (playPauseBtn.progress > 0) {
@@ -101,7 +102,7 @@ Item {
                 var end = start + (2 * Math.PI * playPauseBtn.progress);
                 ctx.beginPath();
                 ctx.arc(cx, cy, r, start, end);
-                ctx.strokeStyle = root.fg;
+                ctx.strokeStyle = Theme.fg;
                 ctx.lineWidth = 2;
                 ctx.lineCap = "round";
                 ctx.stroke();

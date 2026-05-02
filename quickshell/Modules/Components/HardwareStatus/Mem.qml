@@ -1,3 +1,4 @@
+import "../../Themes"
 import QtQuick
 import Quickshell.Io
 
@@ -6,16 +7,16 @@ Item {
 
     property int value: 0
 
-    width: root.systemSize
-    height: root.systemSize
+    width: Theme.systemSize
+    height: Theme.systemSize
 
     Text {
         id: mem
 
         anchors.centerIn: parent
         text: ""
-        color: root.systemColor
-        font.pixelSize: root.iconSySize
+        color: Theme.fg
+        font.pixelSize: Theme.iconSizes
     }
 
     Process {

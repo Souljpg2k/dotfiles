@@ -1,3 +1,4 @@
+import "../Themes"
 import QtQuick
 import Quickshell.Io
 
@@ -5,8 +6,8 @@ Text {
     id: screenshot
 
     text: "󱈀"
-    color: root.fg
-    font.pixelSize: root.iconSize
+    color: Theme.fg
+    font.pixelSize: Theme.iconSize
 
     Process {
         id: hyprshotRegionProcess
