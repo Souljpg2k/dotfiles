@@ -42,28 +42,38 @@ Item {
 
     }
 
-    Process {
-        id: mediaProcess
+  Process {
+    id: mediaProcess
+    command: ["playerctl", "metadata", "--format", "{{artist}} - {{title}}"]
 
-        command: ["playerctl", "metadata", "--format", "{{artist}} - {{title}}"]
-
-        stdout: SplitParser {
-            onRead: function(data) {
-                var trimmed = data.trim();
-                if (!trimmed)
-                    return ;
-
-                var idx = trimmed.indexOf(" - ");
-                if (idx !== -1) {
-                    mediaInfo.artist = trimmed.substring(0, idx);
-                    mediaInfo.title = trimmed.substring(idx + 3);
-                } else {
-                    mediaInfo.title = trimmed;
-                }
+    stdout: SplitParser {
+        onRead: function(data) {
+            var trimmed = data.trim()
+            if (!trimmed) return
+            var idx = trimmed.indexOf(" - ")
+            if (idx !== -1) {
+                mediaInfo.artist = trimmed.substring(0, idx)
+                mediaInfo.title = trimmed.substring(idx + 3)
+            } else {
+                mediaInfo.title = trimmed
             }
         }
-
     }
+
+    stderr: SplitParser {
+        onRead: function(data) {
+            mediaInfo.artist = ""
+            mediaInfo.title = ""
+        }
+    }
+
+    onExited: function(code, status) {
+        if (code !== 0) {
+            mediaInfo.artist = ""
+            mediaInfo.title = ""
+        }
+    }
+}
 
     Timer {
         interval: 2000
