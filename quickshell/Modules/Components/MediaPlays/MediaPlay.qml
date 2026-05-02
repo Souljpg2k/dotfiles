@@ -5,7 +5,7 @@ import Quickshell.Services.Mpris
 Item {
     id: playPauseBtn
 
-    property var player: Mpris.players.values[0] ?? null
+    property var player: Mpris.players.values.length > 0 ? Mpris.players.values[0] : null
     property bool isPlaying: player ? player.isPlaying : false
     property real progress: 0
 
@@ -13,8 +13,22 @@ Item {
     height: root.systemSize
 
     Connections {
+        function onValuesChanged() {
+            if (Mpris.players.values.length === 0) {
+                playPauseBtn.progress = 0;
+                playPauseBtn.player = null;
+            } else {
+                playPauseBtn.player = Mpris.players.values[0];
+            }
+        }
+
+        target: Mpris.players
+    }
+
+    Connections {
         function onTrackChanged() {
             playPauseBtn.progress = 0;
+            canvas.requestPaint();
         }
 
         target: playPauseBtn.player
