@@ -90,7 +90,7 @@ PanelWindow {
                     anchors.centerIn: parent
 
                     Item {
-                        width: 10
+                        width: 5
                     }
 
                     Clock {
