@@ -40,7 +40,7 @@ PanelWindow {
             AppLauncher {
             }
 
-            WindowTitles {
+            ActiveWindow {
             }
 
         }
@@ -60,7 +60,7 @@ PanelWindow {
             Rectangle {
                 width: 160
                 height: root.implicitHeight - 9
-                color: Theme.onbg
+                color: Theme.subbg
                 radius: root.radiusS
 
                 RowLayout {
@@ -83,7 +83,7 @@ PanelWindow {
             Rectangle {
                 width: 200
                 height: root.implicitHeight - 9
-                color: Theme.onbg
+                color: Theme.subbg
                 radius: root.radiusS
 
                 RowLayout {
