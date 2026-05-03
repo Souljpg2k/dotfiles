@@ -37,14 +37,19 @@ Rectangle {
             model: workspaceBar.wsCount
 
             Item {
+                property var ws: Hyprland.workspaces.values.find(function(w) {
+                    return w.id === index + 1;
+                })
+                property bool isActive: workspaceBar.activeWs === index
+
                 width: 24
                 height: 24
 
                 Text {
                     anchors.centerIn: parent
-                    text: workspaceBar.activeWs === index ? "󰮯" : (workspaceBar.isOccupied(index) ? "" : index + 1)
-                    font.pixelSize: workspaceBar.activeWs === index ? 14 : 10
-                    color: workspaceBar.activeWs === index ? Theme.fg : Theme.wsColor
+                    text: isActive ? "󰮯" : (workspaceBar.isOccupied(index) ? "" : index + 1)
+                    font.pixelSize: isActive ? 14 : 10
+                    color: isActive ? Theme.fg : (ws ? Theme.wsColor : Theme.lineColor)
 
                     Behavior on color {
                         ColorAnimation {
