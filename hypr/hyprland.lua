@@ -1,0 +1,8 @@
+require("hyprland/animations")
+require("hyprland/execs")
+require("hyprland/input")
+require("hyprland/monitor")
+require("hyprland/env")
+require("hyprland/generals")
+require("hyprland/keybinds")
+require("hyprland/rules")

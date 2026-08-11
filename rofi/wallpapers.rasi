@@ -1,0 +1,37 @@
+@import "config.rasi"
+
+* {
+    background-color: transparent;
+}
+
+window {
+    width: 50%;
+}
+
+listview {
+    columns: 4;
+    flow: horizontal;
+    lines: 1;
+}
+
+inputbar {
+    margin: 4px 0 4px 0;
+    padding: 8px 8px 8px 12px;
+}
+
+element {
+    orientation: vertical;
+}
+
+element-icon, element-text {
+    text-color: inherit;
+}
+
+element-icon {
+    cursor: pointer;
+    size: 140px;
+}
+
+element-text {
+    horizontal-align: 0.5;
+}

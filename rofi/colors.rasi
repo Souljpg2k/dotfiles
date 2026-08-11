@@ -1,0 +1,9 @@
+* {
+    background: #141318;
+    border-color: #322f35;
+    selected: #2b292f;
+    primary: #e6e1e9;
+    text-selected: #e6e1e9;
+    text-element: #938f99;
+    error-message: #ffb4ab;
+}

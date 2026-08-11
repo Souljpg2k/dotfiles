@@ -1,0 +1,11 @@
+include=~/.config/mako/colors
+font=Google Sans Display Medium 11
+anchor=top-right
+layer=overlay
+margin=15
+padding=15
+width=300
+height=300
+border-size=1
+border-radius=18
+default-timeout=15000

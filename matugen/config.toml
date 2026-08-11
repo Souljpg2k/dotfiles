@@ -1,0 +1,37 @@
+[config]
+
+[templates.btop]
+input_path = '~/.config/matugen/templates/btop.theme'
+output_path = '~/.config/btop/themes/matugen.theme'
+post_hook = 'pkill -USR2 btop || true'
+
+[templates.kitty]
+input_path = '~/.config/matugen/templates/kitty-colors.conf'
+output_path = '~/.config/kitty/themes/colors.conf'
+post_hook = 'pkill -SIGUSR1 kitty'
+
+[templates.cava]
+input_path = '~/.config/matugen/templates/cava-colors.ini'
+output_path = '~/.config/cava/themes/matugen'
+
+[templates.rofi]
+input_path = '~/.config/matugen/templates/rofi-colors.rasi'
+output_path = '~/.config/rofi/colors.rasi'
+
+[templates.mako]
+input_path = '~/.config/matugen/templates/mako-colors'
+output_path = '~/.config/mako/colors'
+post_hook = 'makoctl reload'
+
+[templates.ghostty]
+input_path = '~/.config/matugen/templates/ghostty'
+output_path = '~/.config/ghostty/themes/ghostty'
+post_hook = 'pkill -SIGUSR2 ghostty'
+
+[templates.quickshell]
+input_path = '~/.config/matugen/templates/quickshell.qml'
+output_path = '~/.config/quickshell/Appearance/Appearance.qml'
+
+[templates.hyprlock]
+input_path = '~/.config/matugen/templates/hyprlock-colors.conf'
+output_path = '~/.config/hypr/hyprlock/colors.conf'
